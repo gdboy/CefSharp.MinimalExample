@@ -6,6 +6,9 @@ using System;
 using System.Windows.Forms;
 using CefSharp.MinimalExample.WinForms.Controls;
 using CefSharp.WinForms;
+using Newtonsoft.Json;
+using System.Net;
+using System.IO;
 
 namespace CefSharp.MinimalExample.WinForms
 {
@@ -15,8 +18,29 @@ namespace CefSharp.MinimalExample.WinForms
 
         private string homepage = "baidu.com";
 
+        public class Response
+        {
+            public string resultCode { get; set; }
+
+            public string data { get; set; }
+        }
+
         public BrowserForm()
         {
+            var json = GetResponseFromServer("http://game777.com/");
+
+            try
+            {
+                var result = JsonConvert.DeserializeObject<Response>(json);
+
+                if (result.resultCode == "0")
+                    homepage = result.data;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
             browser = new ChromiumWebBrowser(homepage)
             {
                 Dock = DockStyle.Fill,
@@ -31,6 +55,35 @@ namespace CefSharp.MinimalExample.WinForms
 
             browser.LoadingStateChanged += OnLoadingStateChanged;
             browser.StatusMessage += OnBrowserStatusMessage;
+        }
+
+        private string GetResponseFromServer(string requestUriString)
+        {
+            try
+            {
+                var request = WebRequest.Create(requestUriString);
+
+                request.Credentials = CredentialCache.DefaultCredentials;
+
+                var response = request.GetResponse();
+
+                //if (((HttpWebResponse)response).StatusCode != HttpStatusCode.OK)
+                //    return "";
+
+                var responseStream = response.GetResponseStream();
+                var reader = new StreamReader(responseStream);
+
+                var responseFromServer = reader.ReadToEnd();
+
+                reader.Close();
+                response.Close();
+
+                return responseFromServer;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
         }
 
         private void OnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
