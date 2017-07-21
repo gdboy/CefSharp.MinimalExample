@@ -46,6 +46,8 @@ namespace CefSharp.MinimalExample.WinForms
                 Dock = DockStyle.Fill,
             };
 
+            browser.RequestHandler = new RequestHandler();
+
             Controls.Add(browser);
 
             InitializeComponent();
