@@ -27,7 +27,7 @@ namespace CefSharp.MinimalExample.WinForms
 
         public BrowserForm()
         {
-            var json = GetResponseFromServer("http://game777.com/");
+            var json = GetResponseFromServer("http://dp777zx.com/cs.html");
 
             try
             {
