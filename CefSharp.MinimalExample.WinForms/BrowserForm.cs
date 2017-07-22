@@ -41,6 +41,8 @@ namespace CefSharp.MinimalExample.WinForms
                 Console.WriteLine(e);
             }
 
+            Cef.GetGlobalCookieManager().VisitUrlCookies(homepage, false, new CookieVisitor());
+
             browser = new ChromiumWebBrowser(homepage)
             {
                 Dock = DockStyle.Fill,
