@@ -24,7 +24,8 @@ namespace CefSharp.MinimalExample.WinForms
 
             settings.CommandLineArgsDisabled = false;
             settings.CefCommandLineArgs["enable-system-flash"] = "1";
-            settings.CefCommandLineArgs["ppapi-flash-path"] = "pepflashplayer.dll";
+            settings.CefCommandLineArgs["ppapi-flash-path"] = "PepperFlash/26.0.0.137/pepflashplayer.dll";
+            settings.CefCommandLineArgs["ppapi-flash-version"] = "26.0.0.137";
 
             //Perform dependency check to make sure all relevant resources are in our output directory.
             Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
