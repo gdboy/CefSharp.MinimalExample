@@ -2,6 +2,7 @@
 //
 // Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.
 
+using Microsoft.Win32;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -22,16 +23,17 @@ namespace CefSharp.MinimalExample.WinForms
                 CachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CefSharp\\Cache")
             };
 
+            var flashPath = Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\Macromedia\\FlashPlayerPepper", "PlayerPath", "pepflashplayer.dll") as string;
+
             settings.CommandLineArgsDisabled = false;
             settings.CefCommandLineArgs["enable-system-flash"] = "1";
-            settings.CefCommandLineArgs["ppapi-flash-path"] = "PepperFlash/26.0.0.137/pepflashplayer.dll";
-            settings.CefCommandLineArgs["ppapi-flash-version"] = "26.0.0.137";
+            settings.CefCommandLineArgs["ppapi-flash-path"] = flashPath;
+            //settings.CefCommandLineArgs["ppapi-flash-version"] = "26.0.0.137";
 
             //Perform dependency check to make sure all relevant resources are in our output directory.
             Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
-
-            var browser = new BrowserForm();
-            Application.Run(browser);
+            
+            Application.Run(new BrowserForm());
         }
     }
 }
