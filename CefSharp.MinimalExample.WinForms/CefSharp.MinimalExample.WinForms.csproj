@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ic_launcher.ico" />
+    <Content Include="Resources\ic_launcher.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

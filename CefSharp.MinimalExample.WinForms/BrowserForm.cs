@@ -54,7 +54,7 @@ namespace CefSharp.MinimalExample.WinForms
 
             InitializeComponent();
 
-            Text = "CefSharp";
+            Text = "777在线";
             WindowState = FormWindowState.Maximized;
 
             browser.LoadingStateChanged += OnLoadingStateChanged;

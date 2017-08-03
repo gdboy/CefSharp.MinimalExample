@@ -32,43 +32,100 @@ namespace CefSharp.MinimalExample.WinForms
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserForm));
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.backButton = new System.Windows.Forms.ToolStripButton();
+            this.forwardButton = new System.Windows.Forms.ToolStripButton();
+            this.reloadButton = new System.Windows.Forms.ToolStripButton();
+            this.stopButton = new System.Windows.Forms.ToolStripButton();
+            this.homeButton = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStrip.SuspendLayout();
+            this.statusStrip.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backButton,
+            this.forwardButton,
+            this.reloadButton,
+            this.stopButton,
+            this.homeButton});
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(284, 25);
+            this.toolStrip.TabIndex = 0;
+            // 
+            // backButton
+            // 
+            this.backButton.Enabled = false;
+            this.backButton.Image = global::CefSharp.MinimalExample.WinForms.Properties.Resources.nav_left_green;
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(52, 22);
+            this.backButton.Text = "后退";
+            this.backButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // forwardButton
+            // 
+            this.forwardButton.Enabled = false;
+            this.forwardButton.Image = global::CefSharp.MinimalExample.WinForms.Properties.Resources.nav_right_green;
+            this.forwardButton.Name = "forwardButton";
+            this.forwardButton.Size = new System.Drawing.Size(52, 22);
+            this.forwardButton.Text = "前进";
+            this.forwardButton.Click += new System.EventHandler(this.ForwardButton_Click);
+            // 
+            // reloadButton
+            // 
+            this.reloadButton.Image = global::CefSharp.MinimalExample.WinForms.Properties.Resources.nav_plain_green;
+            this.reloadButton.Name = "reloadButton";
+            this.reloadButton.Size = new System.Drawing.Size(52, 22);
+            this.reloadButton.Text = "刷新";
+            this.reloadButton.Click += new System.EventHandler(this.ReloadButton_Click);
+            // 
+            // stopButton
+            // 
+            this.stopButton.Image = global::CefSharp.MinimalExample.WinForms.Properties.Resources.nav_plain_red;
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(52, 22);
+            this.stopButton.Text = "停止";
+            this.stopButton.Click += new System.EventHandler(this.StopButton_Click);
+            // 
+            // homeButton
+            // 
+            this.homeButton.Name = "homeButton";
+            this.homeButton.Size = new System.Drawing.Size(36, 22);
+            this.homeButton.Text = "主页";
+            this.homeButton.Click += new System.EventHandler(this.HomeButton_Click);
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 239);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(284, 22);
+            this.statusStrip.TabIndex = 1;
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // BrowserForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.toolStrip);
+            this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            
-            toolStrip = new ToolStrip();
+            this.Name = "BrowserForm";
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
-            backButton = new ToolStripButton();
-            forwardButton = new ToolStripButton();
-            reloadButton = new ToolStripButton();
-            stopButton = new ToolStripButton();
-            homeButton = new ToolStripButton();
-
-            statusStrip = new StatusStrip();
-            toolStripStatusLabel = new ToolStripStatusLabel();
-
-            toolStrip.Items.AddRange(new ToolStripItem[] { backButton, forwardButton, reloadButton, stopButton, homeButton });
-
-            backButton.Text = "后退";
-            backButton.Image = Properties.Resources.nav_left_green;
-            forwardButton.Text = "前进";
-            forwardButton.Image = Properties.Resources.nav_right_green;
-            reloadButton.Text = "刷新";
-            reloadButton.Image = Properties.Resources.nav_plain_green;
-            stopButton.Text = "停止";
-            stopButton.Image = Properties.Resources.nav_plain_red;
-            homeButton.Text = "主页";
-
-            backButton.Enabled = false;
-            forwardButton.Enabled = false;
-
-            backButton.Click += new System.EventHandler(BackButton_Click);
-            forwardButton.Click += new System.EventHandler(ForwardButton_Click);
-            reloadButton.Click += new System.EventHandler(ReloadButton_Click);
-            stopButton.Click += new System.EventHandler(StopButton_Click);
-            homeButton.Click += new System.EventHandler(HomeButton_Click);
-
-            statusStrip.Items.Add(toolStripStatusLabel);
-
-            Controls.AddRange(new Control[] { toolStrip, statusStrip });
         }
 
         #endregion
